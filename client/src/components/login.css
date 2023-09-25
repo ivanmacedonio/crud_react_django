@@ -1,0 +1,33 @@
+.logincontainer{
+    display: flex;
+    justify-content: center;
+    margin-top:40px;
+    margin-bottom: 20px;
+}
+
+.logincontainer2{
+    display: flex;
+    justify-content: center;
+}
+
+.submitbutton{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+h1{
+    font-family: 'Inclusive Sans', sans-serif;
+}
+.end{
+    font-family: 'Inclusive Sans', sans-serif; 
+    display: flex;
+    justify-content: center;
+    margin-top: 140px;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}

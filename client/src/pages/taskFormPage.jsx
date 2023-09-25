@@ -3,29 +3,46 @@ import { useForm } from "react-hook-form";
 import { createTask, deleteTask, updateTask, getTask } from "../api/tasks.api";
 import { Navigate, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import { Navigation } from "../components/Navigation";
+import axios from "axios";
 export const TaskFormPage = () => {
   const navigate = useNavigate();
 
   const { register, handleSubmit, setValue } = useForm();
-
+  const token = localStorage.getItem("token");
   const params = useParams();
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
 
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
-      ///si exieste un parametro en la url del form significa que la tarea
-      ///ya existia, por ende estamos en editando
       console.log("actualizando..");
-      await updateTask(params.id, data);
+      await axios.put(
+        `http://localhost:8000/tasks/api/v1/tasks/${params.id}/`,
+        data,
+        {
+          headers,
+        }
+      );
+      navigate('/tasks')
     } else {
-      await createTask(data);
+      await axios.post("http://localhost:8000/tasks/api/v1/tasks/", data, {
+        headers,
+      });
+      navigate('/tasks')
     }
   });
 
   useEffect(() => {
     async function loadTasks() {
       if (params.id) {
-        const res = await getTask(params.id);
+        const res = await axios.get(
+          `http://localhost:8000/tasks/api/v1/tasks/${params.id}/`,
+          {
+            headers,
+          }
+        );
         setValue("title", res.data.title);
         setValue("description", res.data.description);
       }
@@ -35,6 +52,7 @@ export const TaskFormPage = () => {
 
   return (
     <div>
+      <Navigation></Navigation>
       <form onSubmit={onSubmit}>
         <input
           type="text"
@@ -54,7 +72,9 @@ export const TaskFormPage = () => {
           onClick={async () => {
             const accepted = window.confirm("Estas seguro de eliminar");
             if (accepted) {
-              await deleteTask(params.id);
+              await axios.delete(`http://localhost:8000/tasks/api/v1/tasks/${params.id}/`, {
+                headers
+              })
               navigate("/tasks");
             }
           }}

@@ -1,0 +1,38 @@
+.registercontainer{
+    display: flex;
+    justify-content: center;
+    margin-top:40px;
+    margin-bottom: 20px;
+}
+
+.registercontainer2{
+    display: flex;
+    justify-content: center;
+}
+
+.registercontainer3{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.registerbutton{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+h1{
+    font-family: 'Inclusive Sans', sans-serif;
+}
+
+
+.title{
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+h2{
+    font-size: 20px;
+}
