@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { getAllTasks } from "../api/tasks.api";
 import { useNavigate } from "react-router-dom";
 import { Navigation } from "../components/Navigation";
 import axios from "axios";
@@ -31,6 +30,7 @@ export const Taskslist = () => {
       <div className="nav">
         <Navigation></Navigation>
       </div>
+
       <div className="app2">
         {tasks.map((task) => (
           <div
@@ -41,9 +41,10 @@ export const Taskslist = () => {
             }}
           >
             <h1>{task.title}</h1>
-
-            <p>{task.description}</p>
-            {task.done ? <p>Pending</p> : <p>Completed</p>}
+            <div className="taskdescription">
+              <p>{task.description}</p>
+              {task.done ? <p>Pending</p> : <p>Completed</p>}
+            </div>
           </div>
         ))}
       </div>

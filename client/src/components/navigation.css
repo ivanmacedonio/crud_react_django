@@ -1,3 +1,4 @@
+
 .title{
     justify-content: center;
     display: flex;
@@ -8,5 +9,24 @@ h3 {
     font-family: 'Inclusive Sans', sans-serif;
     margin-right: 20px;
     margin-left: 60px;
-    margin-bottom: 20px;
+    margin-bottom: 200px;
 }
+#span1{
+    margin-right: 20px;
+}
+.logout{
+    cursor: pointer;
+}
+.tasks{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 40px;   
+
+}
+
+.createtasks {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+ }

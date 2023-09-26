@@ -11,7 +11,10 @@ from django.contrib.auth.models import User
 @permission_classes([IsAuthenticated])
 class TaskView(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
-    queryset = Task.objects.all()
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+    def get_queryset(self):
+        return Task.objects.filter(user = self.request.user)
 
 class UserRegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
